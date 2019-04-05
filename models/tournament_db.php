@@ -27,5 +27,18 @@ function deleteTournament($id)
     
 }
 
+function searchTournament($term)
+{
+    global $db;
+    $query = "select * from tournament where tournament_name like '%".$term."%' or tournament_name like '%".$term."' or tournament_name like '".$term."%' or tournament_name = '".$term."'";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetchAll();
+    $statement->closeCursor();
+    return $result;
+    
+
+}
+
 
 ?>
