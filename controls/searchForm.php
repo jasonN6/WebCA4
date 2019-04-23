@@ -1,4 +1,4 @@
-<form action="searchResults.php" method="post">
+<form action="../kudos/searchResults.php" method="post">
     <input type="text" placeholder="Search something..." required name="search">
     <br>
     <span>Please select what you wish to search:</span>

@@ -38,7 +38,7 @@ function getMemberByID($id)
     $query = "select * from team_member where member_id = ".$id;
     $statement = $db->prepare($query);
     $statement->execute();
-    $result = $statement->fetchAll();
+    $result = $statement->fetch();
     $statement->closeCursor();
     return $result;
     

@@ -31,6 +31,23 @@ function checkForm()
             document.getElementById("tip").innerHTML = "You need to provide a username for your account";
         }
     }
+    checkName(username);
+}
+
+function checkName(name) {
+    if (name.length == 0) { 
+        document.getElementById("sameName").innerHTML = "";
+        return;
+    } else {
+        var xmlReq = new XMLHttpRequest();
+        xmlReq.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById("sameName").innerHTML = this.responseText;
+            }
+        };
+        xmlReq.open("GET", "../models/same_name.php?name=" + name, true);
+        xmlReq.send();
+    }
 }
 
 </script>
@@ -39,6 +56,7 @@ function checkForm()
     <br>
     <span>Username</span>
     <input type="text" required name="username" id="username" onchange="checkForm()">
+    <span id="sameName"></span>
     <br>
     <span>Password</span>
     <input type="password" required name="password" id="firstPassword" onchange="checkForm()">
