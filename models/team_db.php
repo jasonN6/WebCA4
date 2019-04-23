@@ -29,6 +29,21 @@ function deleteTeam($id)
     
 }
 
+function getTeamById($id)
+{
+
+    global $db;
+
+
+    $query = "select * from team where team_id = ".$id;
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetch();
+    $statement->closeCursor();
+    return $result;
+
+}
+
 function searchTeam($term)
 {
     global $db;

@@ -18,4 +18,23 @@ function deleteKudos($giver,$receiver)
     $statement->closeCursor();
 }
 
+function getKudosByUser($giver,$receiver)
+{
+    global $db;
+    $query = "select * from kudos where giver = '".$giver."' and receiver = '".$receiver."'";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetch();
+    $statement->closeCursor();
+    
+    if($result === null)
+    {
+        return 1;
+    }else
+    {
+        return 2;
+    }
+  
+}
+
 ?>
