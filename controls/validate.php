@@ -4,6 +4,8 @@
 
     include "../connects/db_connect.php";
 
+    require "../models/member_db.php";
+    
     $username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
     $password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
     
@@ -16,12 +18,13 @@
   
     if(!empty($result))
     {
-        $_SESSION['username'] = $username;
+        $_SESSION['member_name'] = $username;
         $_SESSION['member_id'] = $result['member_id'];
-        include "searchForm.php";
+        $_SESSION['leader'] = checkIfLeader($result['member_id']);
+        include "../controls/index.php";
     }else
     {
-        
+        include "../controls/login_failed.php";
     }
     
 ?>

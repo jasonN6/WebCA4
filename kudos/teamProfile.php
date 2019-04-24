@@ -4,6 +4,7 @@
     
     require "../models/team_db.php";
     require "../models/member_db.php";
+    require "../views/member_output.php";
     
     
 
@@ -11,9 +12,12 @@
     
     $team = getTeamById($id);
     
-    $members = getMemberByTeamId($id);
+    
     
     $leader = getMemberByID($team['team_leader']);
+    
+    $members = getNonLeaderInTeam($leader['member_id'], $id);
+   
     
 ?>
 
@@ -23,7 +27,9 @@
     </head>
     <body>
         <p>Name=<?php echo $team['team_name'] ?></p>
-        <p>Team Leader=<?php $leader['member_name'] ?></p>
+        <p>Team Leader=<?php displayMember($leader); ?></p>
+        <p>Members</p>
+        <?php displaySearchMember($members); ?>
         <p>Team Description=<?php echo $team['team_desc'] ?></p>
         
         

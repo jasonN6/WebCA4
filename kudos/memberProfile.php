@@ -40,7 +40,7 @@
                     
             }else if(kudoed==0)
             {
-                document.getElementById("kudo").innerHTML = "Kudos to you!";
+                document.getElementById("kudo").innerHTML = "Kudos to you";
                     
             }
         }
@@ -55,15 +55,25 @@
                 var kudoed = document.getElementById("kudoed").value;
                 if(kudoed==1)
                 {
-                    document.getElementById("kudo").innerHTML = "Kudos to you!";
+                    
                     document.getElementById("kudoed").value = 0;
                 }else if(kudoed==0)
                 {
-                    document.getElementById("kudo").innerHTML = "Kudoed";
+                    
                     document.getElementById("kudoed").value = 1;
                 }
 
-           
+                
+                var kudoed = document.getElementById("kudoed").value;
+                if(kudoed==1)
+                {
+                     document.getElementById("kudo").innerHTML = "Kudoed";
+
+                }else if(kudoed==0)
+                {
+                    document.getElementById("kudo").innerHTML = "Kudos to you";
+
+                }
                 var xmlReq = new XMLHttpRequest();
                 xmlReq.onreadystatechange = function()
                 {
@@ -74,10 +84,12 @@
                 };
                 xmlReq.open("GET", "../models/give_kudos.php?kudoed=" + kudoed +"&receiver=" + receiver + "&giver=" +user, true);
                 xmlReq.send();
+                
             }else
             {
                 alert("You need to login to perform this action!");
             }
+            
                 
         }
         
