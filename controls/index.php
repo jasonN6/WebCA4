@@ -2,6 +2,8 @@
 
     include "../connects/db_connect.php";
     
+    require "../views/member_output.php";
+    require "../views/team_output.php";
     $randomQuotes = mt_rand(0, 5);
     
     $quote = "";
@@ -42,6 +44,7 @@
             if(!isset($_SESSION['member_name']))
             {
                 echo '<a href="login_form.php">Login</a>';
+                echo '<a href="add_member.php">Register</a>';
             }else
             {
                 echo '<h4>Welcome back! ';
@@ -50,6 +53,15 @@
                     echo 'Leader ';
                 }
                 echo $_SESSION['member_name'].'!</h4>';
+                displayMyself();
+                if($_SESSION['team_id'] == -1)
+                {
+                    echo "<p>You don't have a team, join one or create one!</p>";
+                    echo "<a href='add_team.php'>Create a team</a>";
+                }else
+                {
+                    displayMyTeam();
+                }
                 echo '<a href="logout.php">Logout</a>';
             }
         

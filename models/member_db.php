@@ -32,9 +32,23 @@ function searchMember($term)
 
 }
 
+function getMemberIDByName($name)
+{
+    global $db;
+    
+    $query = "select * from team_member where member_name = ".$name;
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetch();
+    $statement->closeCursor();
+    
+    return $result['member_id'];
+}
+
 function getMemberByID($id)
 {
     global $db;
+    
     $query = "select * from team_member where member_id = ".$id;
     $statement = $db->prepare($query);
     $statement->execute();
@@ -89,4 +103,38 @@ function checkIfLeader($member_id)
     
     
 }
+
+function leaveTeam($member_id)
+{
+    global $db;
+    $query = "update team_member set team_id = -1 where member_id = ".$member_id;
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+function dismissTeam($team_id)
+{
+    global $db;
+    $query = "update team_member set team_id = -1 where team_id = ".$team_id;
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $statement->closeCursor();
+    
+    $query2 = "delete from team where team_id = ".$team_id;
+    $statement2 = $db->prepare($query2);
+    $statement2->execute();
+    $statement2->closeCursor();
+}
+
+function joinTeam($member_id,$team_id)
+{
+    global $db;
+    $query = "update team_member set team_id = ".$team_id." where member_id = ".$member_id;
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $statement->closeCursor();
+}
+
+
 ?>

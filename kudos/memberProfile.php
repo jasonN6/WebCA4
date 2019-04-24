@@ -7,7 +7,6 @@
     require '../views/team_output.php';
 
     $id = filter_input(INPUT_POST, "memberID", FILTER_VALIDATE_INT);
-
     $member = getMemberByID($id);
     
     $team = getTeamById($member["team_id"]);
@@ -22,6 +21,8 @@
     {
         $kudoed = 0;
     }
+    
+    
 
 ?>
 <html>
@@ -97,9 +98,9 @@
         <table>
             <tr><td>Name</td><td><?php echo $member['member_name']; ?></td></tr>
             <tr><td>Team</td><td><?php
-                if($member['team_id'] === 0)
+                if($member['team_id'] == -1)
                 {
-                    echo "This person has no team yet";
+                    echo "<p>You do not have a team, join one or create one!</p>";
                 }else
                 {
                     displayTeam($team);

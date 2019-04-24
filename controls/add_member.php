@@ -1,3 +1,13 @@
+<?php
+
+if(isset($_SESSION['member_id']))
+{
+    header("index.php");
+}
+
+?>
+
+
 <script>
 
 

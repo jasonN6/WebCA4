@@ -21,6 +21,7 @@
         $_SESSION['member_name'] = $username;
         $_SESSION['member_id'] = $result['member_id'];
         $_SESSION['leader'] = checkIfLeader($result['member_id']);
+        $_SESSION['team_id'] = $result['team_id'];
         include "../controls/index.php";
     }else
     {

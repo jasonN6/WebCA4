@@ -3,8 +3,13 @@
 
 function createTeam($name,$desc,$team_leader)
 {
+    
     global $db;
-    $query = "insert into team values(null,'".$name.",0,'".$desc."','".$team_leader."')";
+    
+    
+    
+    $query = "insert into team values(null,'".$name."','0','".$desc."','".$team_leader."')";
+    echo "query".$query;
     $statement = $db->prepare($query);
     $statement->execute();
     $statement->closeCursor();
@@ -56,5 +61,21 @@ function searchTeam($term)
     
 
 }
+
+function getTeamIDByName($name)
+{
+    global $db;
+    $query = "select * from team where team_name = '".$name."'";
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetch();
+    $statement->closeCursor();
+    
+    echo "ID++++".$result['team_id'];
+    
+    return $result['team_id'];
+}
+
+
 
 ?>
