@@ -22,7 +22,7 @@
         $_SESSION['member_id'] = $result['member_id'];
         $_SESSION['leader'] = checkIfLeader($result['member_id']);
         $_SESSION['team_id'] = $result['team_id'];
-        include "../controls/index.php";
+        include "../kudos/index.php";
     }else
     {
         include "../controls/login_failed.php";

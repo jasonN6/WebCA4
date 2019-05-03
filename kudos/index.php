@@ -36,6 +36,8 @@
         <title>Kudos - A tournament management system</title>
     </head>
     <body>
+        <div id="content>"
+        <?php include "../views/header.php" ?>
         <h3><?php echo $quote ?></h3>
         
         
@@ -43,8 +45,8 @@
             
             if(!isset($_SESSION['member_name']))
             {
-                echo '<a href="login_form.php">Login</a>';
-                echo '<a href="add_member.php">Register</a>';
+                echo '<a href="../controls/login_form.php">Login</a>';
+                echo '<a href="../controls/add_member.php">Register</a>';
             }else
             {
                 echo '<h4>Welcome back! ';
@@ -65,8 +67,10 @@
                 echo '<a href="logout.php">Logout</a>';
             }
         
-            include "searchForm.php"
+            include "../controls/searchForm.php"
         
         ?>
+        <?php include '../views/footer.php';?>
+        </div>
     </body>
 </html>

@@ -40,7 +40,12 @@
         </title>
     </head>
     <body>
+        <?php include "../views/header.php" ?>
+        
         <?php
+        
+        include "../controls/searchForm.php";
+        
         if($type==="team")
         {
             displaySearchTeam($result);
@@ -55,6 +60,7 @@
 
         }
         ?>
+        <?php include '../views/footer.php';?>
     </body>
 </html>
     

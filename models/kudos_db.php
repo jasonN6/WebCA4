@@ -49,4 +49,20 @@ function getKudosCount($receiver)
     
 }
 
+function getTeamKudosCount($team_id)
+{
+    global $db;
+    $query = "SELECT COUNT(receiver) FROM kudos 
+              INNER JOIN team_member ON kudos.receiver = team_member.member_id
+              INNER JOIN team on team_member.team_id = team.team_id
+              WHERE team.team_id = ".$team_id;
+    $statement = $db->prepare($query);
+    $statement->execute();
+    $result = $statement->fetch();
+    $statement->closeCursor();
+    return $result['COUNT(receiver)'];
+    
+}
+    
+
 ?>

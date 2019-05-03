@@ -56,11 +56,11 @@
                 var kudoed = document.getElementById("kudoed").value;
                 if(kudoed==1)
                 {
-                    
+                    negativeSE();
                     document.getElementById("kudoed").value = 0;
                 }else if(kudoed==0)
                 {
-                    
+                    positiveSE();
                     document.getElementById("kudoed").value = 1;
                 }
 
@@ -95,6 +95,7 @@
         }
         
         </script>
+        <?php include "../views/header.php" ?>
         <table>
             <tr><td>Name</td><td><?php echo $member['member_name']; ?></td></tr>
             <tr><td>Team</td><td><?php
@@ -122,6 +123,6 @@
         }
         
         ?>">
-      
+      <?php include '../views/footer.php';?>
     </body>
 </html>

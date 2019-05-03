@@ -1,3 +1,4 @@
+<div id="searchForm">
 <form action="../kudos/searchResults.php" method="post">
     <input type="text" placeholder="Search something..." required name="search">
     <br>
@@ -11,3 +12,4 @@
     <br>
     <input type="submit" value="Search">
 </form>
+</div>
